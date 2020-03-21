@@ -41,3 +41,21 @@ def remove_stop(seg_list):
         if word not in stop_list:
             new_list.append(word)
     return new_list
+
+
+#计算单词数量
+def total_number():
+    root1 = Toplevel(root)
+    root1.geometry('300x200')
+    root1.title('')
+    num = '单词总数量为：'+str(len(list_))
+    Label(root1,text=num).pack(pady=70)
+
+#统计单词频率并输出
+def get_f(words):
+    tf_dic={}
+    for w in words:
+        tf_dic[w]=tf_dic.get(w,0)+1
+    l = sorted(tf_dic.items(),key=lambda x:x[1],reverse=True)
+    return l
+
