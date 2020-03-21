@@ -114,3 +114,20 @@ def draw_picture():
     canvs = FigureCanvasTkAgg(f1, master=root2)
     canvs.draw()
     canvs.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+
+
+#添加超链接
+def click():
+    root4 = Toplevel(root)
+    root4.geometry('300x200')
+    root4.title('')
+    Label(root4,text='请点击以下链接').pack()
+    l1 = Label(root4,text='https://translate.google.cn/')
+    l1.pack(pady=10)
+    l1.bind('<ButtonPress-1>',lambda x:webbrowser.open('https://translate.google.cn/'))
+    l2 = Label(root4,text='http://fanyi.youdao.com/')
+    l2.pack(pady=10)
+    l2.bind('<ButtonPress-1>',lambda x:webbrowser.open('http://fanyi.youdao.com/'))
+    l3 = Label(root4,text='https://fanyi.baidu.com/')
+    l3.pack(pady=10)
+    l3.bind('<ButtonPress-1>',lambda x:webbrowser.open('https://fanyi.baidu.com/'))
