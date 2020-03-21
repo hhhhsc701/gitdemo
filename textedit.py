@@ -131,3 +131,23 @@ def click():
     l3 = Label(root4,text='https://fanyi.baidu.com/')
     l3.pack(pady=10)
     l3.bind('<ButtonPress-1>',lambda x:webbrowser.open('https://fanyi.baidu.com/'))
+
+##########################################################################################
+#读取文档
+path = filedialog.askopenfilename(initialdir = "/",title = "选择文件",filetypes = (("txt files","*.txt"),("all files","*.*")))
+f = open(path).read()
+#文本中的所有单词
+list_ = get_content(path)
+#文本中去除了停用词后剩余单词
+list_1 = remove_stop(list_)
+#将文章显示出来
+text1 = ScrolledText(root,width=50, height=25,font=('Times New Roman', 13))
+text1.place(x=0)
+text1.insert(END,f)
+#添加按钮
+Button(root,text='单词个数',command=lambda :total_number()).place(x=500,y=25)
+Button(root,text='词频统计',command=lambda :print_f()).place(x=500,y=125)
+Button(root, text='关键词图表 ', command=lambda :draw_picture()).place(x=500,y=225)
+Button(root,text='翻译网站',command=lambda :click()).place(x=500,y=325)
+Button(root,text='退出',command=lambda :root.destroy()).place(x=500,y=425)
+root.mainloop()
