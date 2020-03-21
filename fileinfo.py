@@ -1,5 +1,7 @@
 # version	:1.0
 
-for(int i = 0; i < 10; i++)
-    print(i)
+# version	:2.0
+
+for num in range(1,10):
+    print(num)
 print("hello world!")
