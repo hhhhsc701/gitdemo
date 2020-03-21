@@ -59,3 +59,33 @@ def get_f(words):
     l = sorted(tf_dic.items(),key=lambda x:x[1],reverse=True)
     return l
 
+#输出单词的频率并添加查询功能
+def print_f():
+    root3 = Toplevel(root)
+    root3.geometry('400x300')
+    root3.title('词频')
+    text2 = ScrolledText(root3,width=30, height=20)
+    text2.place(x=0)
+    Label(root3,text='请输入你要查找的单词：').place(x=250)
+    Label(root3,text='该单词的词频是：').place(x=250,y=80)
+    E = Entry(root3,width=15)
+    E.place(x=250,y=25)
+    l = get_f(list_)
+    l1 = [[],[]]
+    a = -20
+    for i in l:
+        a += 20
+        s = list(i)
+        k = s[0]+':'+str(s[1])+'\n'
+        text2.insert(END,k)
+        l1[0].append(s[0])
+        l1[1].append(s[1])
+    def find():
+        word = E.get()
+        if word in l1[0]:
+            Label(root3,text=str(l1[1][l1[0].index(word)])).place(x=350,y=80)
+        else:
+            tm.showerror(title='错误', message='未找到该单词')
+            root3.destroy()
+            print_f()
+    Button(root3,text='查询',command=lambda :find()).place(x=285,y=50)
