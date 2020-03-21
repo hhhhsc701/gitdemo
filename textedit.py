@@ -59,6 +59,7 @@ def get_f(words):
     l = sorted(tf_dic.items(),key=lambda x:x[1],reverse=True)
     return l
 
+
 #输出单词的频率并添加查询功能
 def print_f():
     root3 = Toplevel(root)
@@ -89,3 +90,27 @@ def print_f():
             root3.destroy()
             print_f()
     Button(root3,text='查询',command=lambda :find()).place(x=285,y=50)
+
+
+#频率最高的6个单词及其频率
+def plot(l):
+    x = []
+    y = []
+    for i in range(6):
+        x.append(l[i][0])
+        y.append(l[i][1])
+    return x,y
+    
+#画出柱状图
+def draw_picture():
+    root2 = Toplevel(root)
+    root2.title('关键词')
+    f1 = Figure(figsize=(5, 4), dpi=100)
+    f_plot = f1.add_subplot(111)
+    x, y = plot(get_f(list_1))  
+    f_plot.bar(x, y)
+    for i,j in zip(x,y):
+        f_plot.text(i,j,'%.0f'%j,ha='center',va='bottom')
+    canvs = FigureCanvasTkAgg(f1, master=root2)
+    canvs.draw()
+    canvs.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
